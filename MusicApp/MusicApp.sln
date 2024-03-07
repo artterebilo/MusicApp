@@ -4,6 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicApp", "MusicApp\MusicApp.csproj", "{B3B58D89-46CD-4EC7-B2FF-0DC97CC39AB7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{938A73D8-BDFA-4C8F-975B-4DA564AC6D8C} = {938A73D8-BDFA-4C8F-975B-4DA564AC6D8C}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{E968D564-559E-4E55-A00A-A858364E6B37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{938A73D8-BDFA-4C8F-975B-4DA564AC6D8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,14 @@ Global
 		{B3B58D89-46CD-4EC7-B2FF-0DC97CC39AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3B58D89-46CD-4EC7-B2FF-0DC97CC39AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3B58D89-46CD-4EC7-B2FF-0DC97CC39AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E968D564-559E-4E55-A00A-A858364E6B37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E968D564-559E-4E55-A00A-A858364E6B37}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E968D564-559E-4E55-A00A-A858364E6B37}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E968D564-559E-4E55-A00A-A858364E6B37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{938A73D8-BDFA-4C8F-975B-4DA564AC6D8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{938A73D8-BDFA-4C8F-975B-4DA564AC6D8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{938A73D8-BDFA-4C8F-975B-4DA564AC6D8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{938A73D8-BDFA-4C8F-975B-4DA564AC6D8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
