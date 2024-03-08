@@ -1,6 +1,6 @@
 ﻿using DataBase.Models;
 using Microsoft.AspNetCore.Mvc;
-using MusicApp.Models;
+using MusicApp.Contracts;
 using MusicApp.Services;
 
 namespace MusicApp.Controllers;

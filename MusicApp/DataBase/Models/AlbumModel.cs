@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataBase.Models;
 
-public class ArtistModel
+public class AlbumModel
 {
     [Required]
     public string Id { get; set; }
@@ -15,11 +15,12 @@ public class ArtistModel
     [Required]
     public string Name { get; set; }
 
-    public string Description { get; set; }
+    [Required]
+    public DateTime Release { get; set; }
     public string Genres { get; set; }
+    public string Type { get; set; }
 
     [Required]
-    public DateTime CreatedAt { get; set; }
-
-    public List<AlbumModel> Albums { get; set; } = new();
+    public string ArtistId { get; set; }
+    public ArtistModel Artist { get; set; }
 }

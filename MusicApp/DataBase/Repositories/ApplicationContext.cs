@@ -11,6 +11,7 @@ namespace DataBase.Repositories;
 public class ApplicationContext : DbContext
 {
     public DbSet<ArtistModel> Artists { get; set; } = null!;
+    public DbSet<AlbumModel> Albums { get; set; } = null!;
 
     public string connectionString = "Data Source=WATRUSHECHKA;Database=MusicApp;User Id=sa;Password=34172839;TrustServerCertificate=True";
     //public string connectionString = @"Server=WATRUSHECHKA;Database=MusicApp;Trusted_Connection=True;";

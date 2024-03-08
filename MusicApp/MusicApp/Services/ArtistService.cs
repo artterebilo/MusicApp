@@ -1,6 +1,6 @@
 ﻿using DataBase.Models;
 using DataBase.Repositories;
-using MusicApp.Models;
+using MusicApp.Contracts;
 using Utils;
 
 namespace MusicApp.Services;
@@ -9,6 +9,11 @@ public class ArtistService
 {
     private static ArtistContract MapToContract(ArtistModel artist)
     {
+        if (artist == null)
+        {
+            return null;
+        }
+
         return new ArtistContract
         {
             Id = artist.Id,
@@ -16,11 +21,17 @@ public class ArtistService
             Description = artist.Description,
             Genres = artist.Genres.Split(',').ToList(),
             CreatedAt = artist.CreatedAt,
+            ArtistId = artist.Id,
         };
     }
 
     private static ArtistModel MapToModel(ArtistContract artist)
     {
+        if (artist == null)
+        {
+            return null;
+        }
+
         return new ArtistModel
         {
             Id = artist.Id,
@@ -64,13 +75,11 @@ public class ArtistService
     public static void UpdateArtist(string id, ArtistUpdateContract updateArtist)
     {
         var artist = ArtistService.GetArtistById(id);
-
-        if (artist.Id == id)
-        {
+        
             artist.Name = updateArtist.Name;
             artist.Description = updateArtist.Description;
             artist.Genres = updateArtist.Genres;
-        }
+        
 
         ArtistRepository.UpdateArtist(MapToModel(artist));
     }
