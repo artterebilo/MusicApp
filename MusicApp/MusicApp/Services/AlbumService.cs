@@ -51,7 +51,7 @@ public static class AlbumService
             .ToList();
     }
 
-    public static AlbumContract CreateAlbum(AlbumCreateContract artist)
+    public static AlbumContract CreateAlbum(string artistId, AlbumCreateContract artist)
     {
         var newAlbum = new AlbumModel()
         {
@@ -60,7 +60,7 @@ public static class AlbumService
             Release = artist.Release,
             Genres = String.Join(",", artist.Genres),
             Type = artist.Type,
-            ArtistId = artist.ArtistId
+            ArtistId = artistId
         };
 
         AlbumRepository.CreateAlbum(newAlbum);
@@ -81,7 +81,6 @@ public static class AlbumService
         album.Release = updateAlbum.Release;
         album.Genres = updateAlbum.Genres;
         album.Type = updateAlbum.Type;
-        album.ArtistId = updateAlbum.ArtistId;
 
         AlbumRepository.UpdateAlbum(MapToModel(album));
     }

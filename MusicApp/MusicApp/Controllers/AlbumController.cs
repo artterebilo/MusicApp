@@ -5,11 +5,10 @@ using MusicApp.Services;
 namespace MusicApp.Controllers;
 
 [ApiController]
-[Route("[controller]")]
-
+[Route("artist/{artistId}/[controller]")]
 public class AlbumController : ControllerBase
 {
-    [HttpGet("by-artist/{artistId}")]
+    [HttpGet]
     public ActionResult<List<AlbumContract>> GetAllAlbumsByArtist(string artistId)
     {
         var artist = ArtistService.GetArtistById(artistId);
@@ -23,26 +22,26 @@ public class AlbumController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateAlbum(AlbumCreateContract album)
+    public IActionResult CreateAlbum(string artistId, AlbumCreateContract album)
     {
-        var artist = ArtistService.GetArtistById(album.ArtistId);
+        var artist = ArtistService.GetArtistById(artistId);
 
         if (artist is null)
         {
             return NotFound();
         }
 
-        var newAlbum = AlbumService.CreateAlbum(album);
+        var newAlbum = AlbumService.CreateAlbum(artistId, album);
 
         return Created("Album", newAlbum);
     }
 
     [HttpGet("{id}")]
-    public ActionResult<AlbumContract> GetAlbumById(string id)
+    public ActionResult<AlbumContract> GetAlbumById(string artistId, string id)
     {
         var album = AlbumService.GetAlbumById(id);
 
-        if (album is null)
+        if (album is null || album.ArtistId != artistId)
         {
             return NotFound();
         }
@@ -51,10 +50,10 @@ public class AlbumController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateAlbum(string id, AlbumUpdateContract updateAlbum)
+    public IActionResult UpdateAlbum(string artistId, string id, AlbumUpdateContract updateAlbum)
     {
         var album = AlbumService.GetAlbumById(id);
-        var artist = ArtistService.GetArtistById(updateAlbum.ArtistId);
+        var artist = ArtistService.GetArtistById(artistId);
 
         if (artist is null || album is null)
         {
