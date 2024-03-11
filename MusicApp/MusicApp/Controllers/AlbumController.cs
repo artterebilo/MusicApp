@@ -66,7 +66,7 @@ public class AlbumController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeleteAlbum(string id)
+    public IActionResult DeleteAlbum(string artistId, string id)
     {
         var album = AlbumService.GetAlbumById(id);
 

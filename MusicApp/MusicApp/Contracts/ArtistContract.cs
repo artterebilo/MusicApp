@@ -19,7 +19,7 @@ public class ArtistContract
     public string ArtistId { get; set; }
 }
 
-public class ArtistCreateContract
+public class ArtistCreateContract 
 {
     public string Name { get; set; }
     public string Description { get; set; }

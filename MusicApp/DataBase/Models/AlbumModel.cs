@@ -24,4 +24,6 @@ public class AlbumModel
     [Required]
     public string ArtistId { get; set; }
     public ArtistModel Artist { get; set; }
+
+    public List<SongModel> Songs { get; set; } = new();
 }
