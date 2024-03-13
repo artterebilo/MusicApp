@@ -2,18 +2,20 @@
 using Microsoft.AspNetCore.Mvc;
 using MusicApp.Contracts;
 using MusicApp.Services;
+using Utils;
 
 namespace MusicApp.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 
+
 public class ArtistController : ControllerBase
 {
     [HttpGet]
-    public ActionResult<List<ArtistContract>> GetAllArtists()
+    public ActionResult<List<ArtistContract>> GetAllArtists([FromQuery] PaginationParams @params)
     {
-        return ArtistService.GetAllArtists();
+        return ArtistService.GetAllArtists(@params);
     }
 
     [HttpPost]

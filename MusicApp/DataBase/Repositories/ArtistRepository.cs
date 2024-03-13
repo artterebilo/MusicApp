@@ -4,16 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace DataBase.Repositories;
 
 public static class ArtistRepository
 {
-    public static List<ArtistModel> GetAllArtists()
+    public static List<ArtistModel> GetAllArtists(PaginationParams @params)
     {
         using (ApplicationContext db = new ApplicationContext())
         {
-            return db.Artists.ToList();
+            return db.Artists
+                .Skip((@params.PageNumber - 1) * @params.PageSize)
+                .Take(@params.PageSize)
+                .ToList();
         }
     }
 

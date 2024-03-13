@@ -1,5 +1,6 @@
 ﻿using DataBase.Models;
 using DataBase.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using MusicApp.Contracts;
 using Utils;
 
@@ -24,7 +25,6 @@ public class ArtistService
             ArtistId = artist.Id,
         };
     }
-
     private static ArtistModel MapToModel(ArtistContract artist)
     {
         if (artist == null)
@@ -41,11 +41,10 @@ public class ArtistService
             CreatedAt = artist.CreatedAt,
         };
     }
-
-    public static List<ArtistContract> GetAllArtists()
+    public static List<ArtistContract> GetAllArtists(PaginationParams @params)
     {
         return ArtistRepository
-            .GetAllArtists()
+            .GetAllArtists(@params)
             .Select(MapToContract)
             .ToList();
     }

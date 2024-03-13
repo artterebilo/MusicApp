@@ -42,7 +42,13 @@ public static class AlbumService
             ArtistId = Album.ArtistId
         };
     }
-
+    public static List<AlbumContract> GetAlbumForPagination(PaginationAlbum @params)
+    {
+        return AlbumRepository
+            .GetAlbumsForPagination(@params)
+            .Select(MapToContract)
+            .ToList();
+    }
     public static List<AlbumContract> GetAllAlbumsByArtist(string id)
     {
         return AlbumRepository

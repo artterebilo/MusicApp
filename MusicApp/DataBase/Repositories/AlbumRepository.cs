@@ -5,11 +5,23 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace DataBase.Repositories;
 
 public static class AlbumRepository
 {
+    public static List<AlbumModel> GetAlbumsForPagination(PaginationAlbum @params)
+    {
+        using (ApplicationContext db = new ApplicationContext())
+        {
+            return db.Albums
+                .Where(x => x.Genres.Contains(@params.Genre)) // || @params.Genre == null)
+                .OrderBy(x => @params.SortBy)
+                .ThenBy(x => @params.OrderBy)
+                .ToList();
+        }
+    }
     public static List<AlbumModel> GetAllAlbums(string id)
     {
         using (ApplicationContext db = new ApplicationContext())
