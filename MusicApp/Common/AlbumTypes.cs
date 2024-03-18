@@ -2,6 +2,7 @@
 
 public enum AlbumTypes
 {
-    EP = 0,
-    LP = 1,
+    Undefined = 0,
+    EP = 1,
+    LP = 2,
 }

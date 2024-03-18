@@ -10,13 +10,13 @@ namespace DataBase.Repositories;
 
 public static class ArtistRepository
 {
-    public static List<ArtistModel> GetAllArtists(PaginationParams @params)
+    public static List<ArtistModel> GetAllArtists(PaginationParams inputParams)
     {
         using (ApplicationContext db = new ApplicationContext())
         {
             return db.Artists
-                .Skip((@params.PageNumber - 1) * @params.PageSize)
-                .Take(@params.PageSize)
+                .Skip((inputParams.PageNumber - 1) * inputParams.PageSize)
+                .Take(inputParams.PageSize)
                 .ToList();
         }
     }

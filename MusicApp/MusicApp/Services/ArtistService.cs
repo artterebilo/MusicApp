@@ -41,10 +41,10 @@ public class ArtistService
             CreatedAt = artist.CreatedAt,
         };
     }
-    public static List<ArtistContract> GetAllArtists(PaginationParams @params)
+    public static List<ArtistContract> GetAllArtists(PaginationParams inputParams)
     {
         return ArtistRepository
-            .GetAllArtists(@params)
+            .GetAllArtists(inputParams)
             .Select(MapToContract)
             .ToList();
     }

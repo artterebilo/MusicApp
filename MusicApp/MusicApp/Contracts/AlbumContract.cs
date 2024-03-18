@@ -35,3 +35,20 @@ public class AlbumUpdateContract
     public AlbumTypes Type { get; set; }
 
 }
+
+public class AlbumPaginationContract
+{
+    public string Name { get; set; }
+    public DateTime Release { get; set; }
+    public string ArtistName { get; set; }
+    public List<string> Genres { get; set; }
+}
+public class AlbumsPaginationContract
+{
+    public int TotalCount { get; set; }
+    public int PageNumber { get; set; }
+    public int PageSize { get; set; }
+    public int PageCount { get; set; }
+    public List<AlbumPaginationContract> Albums {  get; set; }    
+}
+

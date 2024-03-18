@@ -20,7 +20,7 @@ namespace Utils
         }
     }
 
-    public class PaginationAlbum : PaginationParams
+    public class DefaultPagination : PaginationParams
     {
         private string genre = "";
         public string Genre 

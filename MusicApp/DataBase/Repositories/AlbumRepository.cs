@@ -11,7 +11,15 @@ namespace DataBase.Repositories;
 
 public static class AlbumRepository
 {
-    public static List<AlbumModel> GetAlbumsForPagination(PaginationAlbum @params)
+    public static int GetAlbumsCount()
+    {
+        using (ApplicationContext db = new ApplicationContext())
+        {
+            return db.Albums
+                .Count();
+        }
+    }
+    public static List<AlbumModel> GetAlbumsForPagination(DefaultPagination @params)
     {
         using (ApplicationContext db = new ApplicationContext())
         {
@@ -19,6 +27,8 @@ public static class AlbumRepository
                 .Where(x => x.Genres.Contains(@params.Genre)) // || @params.Genre == null)
                 .OrderBy(x => @params.SortBy)
                 .ThenBy(x => @params.OrderBy)
+                .Skip((@params.PageNumber - 1) * @params.PageSize)
+                .Take(@params.PageSize)
                 .ToList();
         }
     }
