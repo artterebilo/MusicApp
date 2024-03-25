@@ -1,7 +1,23 @@
+using Microsoft.AspNetCore.Localization;
+using MusicApp.Contracts;
+using System.Globalization;
+using System.Text.Json.Serialization;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+
+builder.Services.AddControllers()
+    .AddJsonOptions(opts =>
+{
+    var enumConverter = new JsonStringEnumConverter();
+    opts.JsonSerializerOptions.Converters.Add(enumConverter);
+});
+
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -20,6 +36,20 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapRazorPages();
+app.MapControllers();
+
+var supportedCultures = new[]
+{
+                new CultureInfo("en"),
+                new CultureInfo("ru"),
+                new CultureInfo("de")
+            };
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("ru"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+});
+
 
 app.Run();
