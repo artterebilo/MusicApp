@@ -41,6 +41,22 @@ public class SongService
             AlbumId = song.AlbumId
         };
     }
+    private static SongModel MapFromSongUpdateContractToSongModel(string id, SongCreateAndUpdateContract song)
+    {
+        if (song is null)
+        {
+            return null;
+        }
+
+        return new SongModel
+        {
+            Id = id,
+            Name = song.Name,
+            Number = song.Number,
+            DurationInSeconds = song.DurationInSeconds,
+            FeaturingArtistIds = String.Join(",", song.FeaturingArtistIds)
+        };
+    }
     public static List<SongContract> GetAllSongsForAlbum(string albumId)
     {
         return SongRepository
@@ -52,12 +68,12 @@ public class SongService
     {
         return MapToContract(SongRepository.GetSongById(id));
     }
-    public static List<SongContract> CreateSongs(string albumId, List<SongCreateContract> songs)
+    public static List<SongContract> CreateSongs(string albumId, List<SongCreateAndUpdateContract> songs)
     {
         var songsToCreate = songs
             .Select(song => new SongModel
             {
-                Id = GenerateId.Id(),
+                Id = IdGenerator.Id(),
                 Name = song.Name,
                 Number = song.Number,
                 DurationInSeconds = song.DurationInSeconds,
@@ -72,7 +88,7 @@ public class SongService
             .Select(MapToContract)
             .ToList();
     }
-    public static void UpdateSongs(List<SongUpdateContract> songs)
+    public static void UpdateSongs(List<SongCreateAndUpdateContract> songs)
     {
         var updateSongs = songs
             .Select(song => new SongModel
@@ -86,17 +102,9 @@ public class SongService
 
         SongRepository.UpdateSongs(updateSongs);
     }
-    public static void UpdateSong(string id, SongUpdateContract song)
+    public static void UpdateSong(string id, SongCreateAndUpdateContract song)
     {
-        var updateSong = new SongModel
-        {
-            Name = song.Name,
-            Number = song.Number,
-            DurationInSeconds = song.DurationInSeconds,
-            FeaturingArtistIds = String.Join(',', song.FeaturingArtistIds),
-        };
-
-        SongRepository.UpdateSong(id, updateSong);
+        SongRepository.UpdateSong(id, MapFromSongUpdateContractToSongModel(id, song));
     }
     public static void DeleteSong(string id)
     {

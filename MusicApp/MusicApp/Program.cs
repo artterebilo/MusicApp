@@ -42,7 +42,6 @@ var supportedCultures = new[]
 {
                 new CultureInfo("en"),
                 new CultureInfo("ru"),
-                new CultureInfo("de")
             };
 app.UseRequestLocalization(new RequestLocalizationOptions
 {

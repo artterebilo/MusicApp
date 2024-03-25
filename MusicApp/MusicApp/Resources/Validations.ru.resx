@@ -165,6 +165,15 @@
   <data name="ArtistNameCheckLength" xml:space="preserve">
     <value>Пожалуйста, убедитесь, что вы ввели свой {PropertyName} длиной от 4 до 30 символов</value>
   </data>
+  <data name="ArtistNotFoundByThisId" xml:space="preserve">
+    <value>Исполнитель по этому идентификатору не найден</value>
+  </data>
+  <data name="ArtistOrAlbumIsNotFound" xml:space="preserve">
+    <value>Артист или Альбом не был найден.</value>
+  </data>
+  <data name="NotPossibleToCreateAlbum" xml:space="preserve">
+    <value>Создать альбом этого исполнителя не удалось, потому что артист по этому  идентификатору не был найден.</value>
+  </data>
   <data name="OrderByCheckCorrectValues" xml:space="preserve">
     <value>Пожалуйста введите desc или asc</value>
   </data>

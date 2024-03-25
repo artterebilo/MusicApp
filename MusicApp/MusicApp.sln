@@ -12,7 +12,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBase", "DataBase\DataBa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utils", "Utils\Utils.csproj", "{938A73D8-BDFA-4C8F-975B-4DA564AC6D8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enums", "Common\Enums.csproj", "{171024FE-FA82-441E-8EF0-0E9FA49B715C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Enums", "Common\Enums.csproj", "{171024FE-FA82-441E-8EF0-0E9FA49B715C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicApp.Unit.Tests", "UnitTests\MusicApp.Unit.Tests\MusicApp.Unit.Tests.csproj", "{5D23914E-E23D-4A03-A760-28430EBEF8AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +38,10 @@ Global
 		{171024FE-FA82-441E-8EF0-0E9FA49B715C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{171024FE-FA82-441E-8EF0-0E9FA49B715C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{171024FE-FA82-441E-8EF0-0E9FA49B715C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D23914E-E23D-4A03-A760-28430EBEF8AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D23914E-E23D-4A03-A760-28430EBEF8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D23914E-E23D-4A03-A760-28430EBEF8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D23914E-E23D-4A03-A760-28430EBEF8AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

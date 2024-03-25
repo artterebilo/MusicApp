@@ -19,7 +19,7 @@ public class AlbumsController : ControllerBase
         return new AlbumPaginationContract
         {
             Name = albums.Name,
-            Release = albums.Release,
+            ReleaseDate = albums.ReleaseDate,
             ArtistName = ArtistService.GetArtistById(albums.ArtistId).Name,
             Genres = albums.Genres
         };

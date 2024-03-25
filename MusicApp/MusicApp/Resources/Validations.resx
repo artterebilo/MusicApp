@@ -165,6 +165,15 @@
   <data name="ArtistNameCheckLength" xml:space="preserve">
     <value>Please ensure you have entered your {PropertyName} length from 4 to 30 characters</value>
   </data>
+  <data name="ArtistNotFoundByThisId" xml:space="preserve">
+    <value>No artist has been found for this ID</value>
+  </data>
+  <data name="ArtistOrAlbumIsNotFound" xml:space="preserve">
+    <value>ArtistId or AlbumId not found</value>
+  </data>
+  <data name="NotPossibleToCreateAlbum" xml:space="preserve">
+    <value>It was not possible to create an album of this artist, so the id was not found.</value>
+  </data>
   <data name="OrderByCheckValues" xml:space="preserve">
     <value>Please enter desc or asc</value>
   </data>

@@ -205,6 +205,33 @@ namespace MusicApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No artist has been found for this ID.
+        /// </summary>
+        public static string ArtistNotFoundByThisId {
+            get {
+                return ResourceManager.GetString("ArtistNotFoundByThisId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ArtistId or AlbumId not found.
+        /// </summary>
+        public static string ArtistOrAlbumIsNotFound {
+            get {
+                return ResourceManager.GetString("ArtistOrAlbumIsNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It was not possible to create an album of this artist, so the id was not found..
+        /// </summary>
+        public static string NotPossibleToCreateAlbum {
+            get {
+                return ResourceManager.GetString("NotPossibleToCreateAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter desc or asc.
         /// </summary>
         public static string OrderByCheckValues {

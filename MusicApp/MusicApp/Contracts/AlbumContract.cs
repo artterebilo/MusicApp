@@ -1,4 +1,4 @@
-﻿using Enums.AlbomTypes;
+﻿using Enums.AlbumTypes;
 using System.ComponentModel.DataAnnotations;
 
 namespace MusicApp.Contracts;
@@ -6,40 +6,25 @@ namespace MusicApp.Contracts;
 public class AlbumContract
 {
     public string Id { get; set; }
-
-    [StringLength(50)]
     public string Name { get; set; }
-    public DateTime Release { get; set; }
-
-    [StringLength(100)]
+    public DateTime ReleaseDate { get; set; }
     public List<string> Genres { get; set; }
-
     public AlbumTypes Type { get; set; }
     public string ArtistId { get; set; }
 }
 
-public class AlbumCreateContract
+public class AlbumCreateAndUpdateContract
 {
     public string Name { get; set; }
-    public DateTime Release { get; set; }
+    public DateTime? ReleaseDate { get; set; }
     public List<string> Genres { get; set; }
     public AlbumTypes Type { get; set; }
-
-}
-
-public class AlbumUpdateContract
-{
-    public string Name { get; set; }
-    public DateTime Release { get; set; }
-    public List<string> Genres { get; set; }
-    public AlbumTypes Type { get; set; }
-
 }
 
 public class AlbumPaginationContract
 {
     public string Name { get; set; }
-    public DateTime Release { get; set; }
+    public DateTime ReleaseDate { get; set; }
     public string ArtistName { get; set; }
     public List<string> Genres { get; set; }
 }
@@ -49,6 +34,6 @@ public class AlbumsPaginationContract
     public int PageNumber { get; set; }
     public int PageSize { get; set; }
     public int PageCount { get; set; }
-    public List<AlbumPaginationContract> Albums {  get; set; }    
+    public List<AlbumPaginationContract> Albums { get; set; }    
 }
 

@@ -1,4 +1,4 @@
-﻿using Enums.AlbomTypes;
+﻿using Enums.AlbumTypes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -17,7 +17,7 @@ public class AlbumModel
     public string Name { get; set; }
 
     [Required]
-    public DateTime Release { get; set; }
+    public DateTime ReleaseDate { get; set; }
     public string Genres { get; set; }
     public AlbumTypes Type { get; set; }
 
