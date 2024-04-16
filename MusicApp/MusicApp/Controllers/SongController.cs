@@ -42,9 +42,9 @@ public class SongsController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateSongs(string artistId, string albumId, List<SongCreateContract> songs)
+    public IActionResult CreateSongs(string artistId, string albumId, List<SongCreateAndUpdateContract> songs)
     {
-        var validator = new SongsCreateValidation();
+        var validator = new SongsCreateAndUpdateValidation();
         var result = validator.Validate(songs);
         if (!result.IsValid)
         {
@@ -77,9 +77,9 @@ public class SongsController : ControllerBase
     }
 
     [HttpPut]
-    public IActionResult UpdateSongs(string artistId, string albumId, List<SongUpdateContract> songs)
+    public IActionResult UpdateSongs(string artistId, string albumId, List<SongCreateAndUpdateContract> songs)
     {
-        var validator = new SongsUpdateValidation();
+        var validator = new SongsCreateAndUpdateValidation();
         var result = validator.Validate(songs);
         if (!result.IsValid)
         {
@@ -113,7 +113,7 @@ public class SongsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateSong(string artistId, string albumId,  string id, SongUpdateContract song)
+    public IActionResult UpdateSong(string artistId, string albumId,  string id, SongCreateAndUpdateContract song)
     {
         var validator = new SongUpdateValidation();
         var result = validator.Validate(song);

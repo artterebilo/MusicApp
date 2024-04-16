@@ -1,4 +1,5 @@
 ﻿using DataBase.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -19,7 +20,7 @@ public static class AlbumRepository
                 .Count();
         }
     }
-    public static List<AlbumModel> GetAlbumsForPagination(DefaultPagination @params)
+    public static List<AlbumModel> GetAlbumsForPagination(AlbumPagination @params)
     {
         using (ApplicationContext db = new ApplicationContext())
         {
@@ -32,12 +33,12 @@ public static class AlbumRepository
                 .ToList();
         }
     }
-    public static List<AlbumModel> GetAllAlbums(string id)
+    public static List<AlbumModel> GetAllAlbums(string artistId)
     {
         using (ApplicationContext db = new ApplicationContext())
         {
             return db.Albums
-                .Where(x => x.ArtistId == id)
+                .Where(x => x.ArtistId == artistId)
                 .ToList();
         }
     }
@@ -50,7 +51,7 @@ public static class AlbumRepository
             {
                 Id = album.Id,
                 Name = album.Name,
-                Release = album.Release,
+                ReleaseDate = album.ReleaseDate,
                 Genres = album.Genres,
                 Type = album.Type,
                 ArtistId = album.ArtistId
@@ -73,14 +74,14 @@ public static class AlbumRepository
     {
         using (ApplicationContext db = new ApplicationContext())
         {
-            var updateAlbum = db.Albums.FirstOrDefault(alb => alb.Id == album.Id);
-
-            updateAlbum.Name = album.Name;
-            updateAlbum.Release = album.Release;
-            updateAlbum.Genres = album.Genres;
-            updateAlbum.Type = album.Type;
-            updateAlbum.ArtistId = album.ArtistId;
-
+            db.Albums
+                .Where(a => a.Id == album.Id)
+                .ExecuteUpdate(a => a
+                    .SetProperty(a => a.Name, album.Name)
+                    .SetProperty(a => a.ReleaseDate, album.ReleaseDate)
+                    .SetProperty(a => a.Genres, album.Genres)
+                    .SetProperty(a => a.Type, album.Type)
+                    .SetProperty(a => a.ArtistId, album.ArtistId));
             db.SaveChanges();
         }
     }

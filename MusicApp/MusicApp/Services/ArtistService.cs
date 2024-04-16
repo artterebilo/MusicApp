@@ -27,7 +27,7 @@ public class ArtistService
     }
     private static ArtistModel MapToModel(ArtistContract artist)
     {
-        if (artist == null)
+        if (artist is null)
         {
             return null;
         }
@@ -41,6 +41,23 @@ public class ArtistService
             CreatedAt = artist.CreatedAt,
         };
     }
+    private static ArtistModel MapFromArtistUpdateContractToArtistModel(string id, ArtistCreateAndUpdateContract artist)
+    {
+        if (artist is null)
+        {
+            return null;
+        }
+
+        return new ArtistModel
+        {
+            Id = id,
+            Name = artist.Name,
+            Description = artist.Description,
+            Genres = String.Join(",", artist.Genres),
+            
+        };
+    }
+
     public static List<ArtistContract> GetAllArtists(PaginationParams inputParams)
     {
         return ArtistRepository
@@ -48,12 +65,15 @@ public class ArtistService
             .Select(MapToContract)
             .ToList();
     }
-
-    public static ArtistContract CreateArtist(ArtistCreateContract artist)
+    public static ArtistContract GetArtistById(string id)
+    {
+        return MapToContract(ArtistRepository.GetArtistById(id));
+    }
+    public static ArtistContract CreateArtist(ArtistCreateAndUpdateContract artist)
     {
         var newArtist = new ArtistModel()
         {
-            Id = GenerateId.Id(),
+            Id = IdGenerator.Id(),
             Name = artist.Name,
             Description = artist.Description,
             Genres = String.Join(",", artist.Genres),
@@ -64,27 +84,13 @@ public class ArtistService
 
         return MapToContract(newArtist);
     }
-
-    public static ArtistContract GetArtistById(string id)
+    public static void UpdateArtist(string id, ArtistCreateAndUpdateContract updateArtist)
     {
-        var artist = ArtistRepository.GetArtistById(id);
-
-        return MapToContract(artist);
+        ArtistRepository.UpdateArtist(MapFromArtistUpdateContractToArtistModel(id, updateArtist));
     }
-    public static void UpdateArtist(string id, ArtistUpdateContract updateArtist)
-    {
-        var artist = ArtistService.GetArtistById(id);
-        
-            artist.Name = updateArtist.Name;
-            artist.Description = updateArtist.Description;
-            artist.Genres = updateArtist.Genres;
-        
-
-        ArtistRepository.UpdateArtist(MapToModel(artist));
-    }
-
     public static void DeleteArtist(string id)
     {
         ArtistRepository.DeleteArtist(id);
     }
 }
+ 

@@ -205,6 +205,33 @@ namespace MusicApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No artist has been found for this ID.
+        /// </summary>
+        public static string ArtistNotFoundByThisId {
+            get {
+                return ResourceManager.GetString("ArtistNotFoundByThisId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ArtistId or AlbumId not found.
+        /// </summary>
+        public static string ArtistOrAlbumIsNotFound {
+            get {
+                return ResourceManager.GetString("ArtistOrAlbumIsNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It was not possible to create an album of this artist, so the id was not found..
+        /// </summary>
+        public static string NotPossibleToCreateAlbum {
+            get {
+                return ResourceManager.GetString("NotPossibleToCreateAlbum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter desc or asc.
         /// </summary>
         public static string OrderByCheckValues {
@@ -273,6 +300,204 @@ namespace MusicApp.Resources {
         public static string SortByCheckCorrectValues {
             get {
                 return ResourceManager.GetString("SortByCheckCorrectValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} cannot be in the future..
+        /// </summary>
+        public static string UserDateOfBirthCannotBeInTheFuture {
+            get {
+                return ResourceManager.GetString("UserDateOfBirthCannotBeInTheFuture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} is too old..
+        /// </summary>
+        public static string UserDateOfBirthIsTooOld {
+            get {
+                return ResourceManager.GetString("UserDateOfBirthIsTooOld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {PropertyName} cannot be empty..
+        /// </summary>
+        public static string UserEmailCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("UserEmailCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {PropertyName} cannot exceed 320 characters..
+        /// </summary>
+        public static string UserEmailCannotExceed320Characters {
+            get {
+                return ResourceManager.GetString("UserEmailCannotExceed320Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid {PropertyName} format..
+        /// </summary>
+        public static string UserEmailInvalidFormat {
+            get {
+                return ResourceManager.GetString("UserEmailInvalidFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This {PropertyName} is already in use..
+        /// </summary>
+        public static string UserEmailShouldBeUnique {
+            get {
+                return ResourceManager.GetString("UserEmailShouldBeUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {PropertyName} cannot be empty..
+        /// </summary>
+        public static string UserFirstNameCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("UserFirstNameCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} cannot exceed 50 characters..
+        /// </summary>
+        public static string UserFirstNameCannotExceed50Characters {
+            get {
+                return ResourceManager.GetString("UserFirstNameCannotExceed50Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {PropertyName} cannot be empty..
+        /// </summary>
+        public static string UserLastNameCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("UserLastNameCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} cannot exceed 50 characters..
+        /// </summary>
+        public static string UserLastNameCannotExceed50Characters {
+            get {
+                return ResourceManager.GetString("UserLastNameCannotExceed50Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} can contain only letters, numbers and an underscore.
+        /// </summary>
+        public static string UserLoginCanContainOnlyLettersNumberAndUnderscore {
+            get {
+                return ResourceManager.GetString("UserLoginCanContainOnlyLettersNumberAndUnderscore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} cannot exceed 50 characters.
+        /// </summary>
+        public static string UserLoginCannotExceed50Characters {
+            get {
+                return ResourceManager.GetString("UserLoginCannotExceed50Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} cannot be empty..
+        /// </summary>
+        public static string UserLoginCheckIsNotEmpty {
+            get {
+                return ResourceManager.GetString("UserLoginCheckIsNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} must contain at least 4 characters..
+        /// </summary>
+        public static string UserLoginMustContainAtLeast4Characters {
+            get {
+                return ResourceManager.GetString("UserLoginMustContainAtLeast4Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This {PropertyName} is already in use..
+        /// </summary>
+        public static string UserLoginShouldBeUnique {
+            get {
+                return ResourceManager.GetString("UserLoginShouldBeUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} cannot be empty..
+        /// </summary>
+        public static string UserPasswordCannotBeEmpty {
+            get {
+                return ResourceManager.GetString("UserPasswordCannotBeEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} cannot exceed 50 characters.
+        /// </summary>
+        public static string UserPasswordCannotExceed50Characters {
+            get {
+                return ResourceManager.GetString("UserPasswordCannotExceed50Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertName} must contain at least 8 characters..
+        /// </summary>
+        public static string UserPasswordMustContainAtLeast8Characters {
+            get {
+                return ResourceManager.GetString("UserPasswordMustContainAtLeast8Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} must contain at least one digit..
+        /// </summary>
+        public static string UserPasswordMustContainAtLeastOneDigit {
+            get {
+                return ResourceManager.GetString("UserPasswordMustContainAtLeastOneDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} must contain at least one lowercase letter..
+        /// </summary>
+        public static string UserPasswordMustContainAtLeastOneLowercaseLetter {
+            get {
+                return ResourceManager.GetString("UserPasswordMustContainAtLeastOneLowercaseLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} must contain at least one special character..
+        /// </summary>
+        public static string UserPasswordMustContainAtLeastOneSpecialCharacter {
+            get {
+                return ResourceManager.GetString("UserPasswordMustContainAtLeastOneSpecialCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {PropertyName} must contain at least one uppercase letter..
+        /// </summary>
+        public static string UserPasswordMustContainAtLeastOneUppercaseLetter {
+            get {
+                return ResourceManager.GetString("UserPasswordMustContainAtLeastOneUppercaseLetter", resourceCulture);
             }
         }
     }

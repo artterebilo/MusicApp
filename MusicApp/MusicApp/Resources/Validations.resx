@@ -165,6 +165,15 @@
   <data name="ArtistNameCheckLength" xml:space="preserve">
     <value>Please ensure you have entered your {PropertyName} length from 4 to 30 characters</value>
   </data>
+  <data name="ArtistNotFoundByThisId" xml:space="preserve">
+    <value>No artist has been found for this ID</value>
+  </data>
+  <data name="ArtistOrAlbumIsNotFound" xml:space="preserve">
+    <value>ArtistId or AlbumId not found</value>
+  </data>
+  <data name="NotPossibleToCreateAlbum" xml:space="preserve">
+    <value>It was not possible to create an album of this artist, so the id was not found.</value>
+  </data>
   <data name="OrderByCheckValues" xml:space="preserve">
     <value>Please enter desc or asc</value>
   </data>
@@ -188,5 +197,71 @@
   </data>
   <data name="SortByCheckCorrectValues" xml:space="preserve">
     <value>Please enter the correct values for sorting {0}</value>
+  </data>
+  <data name="UserDateOfBirthCannotBeInTheFuture" xml:space="preserve">
+    <value>The {PropertyName} cannot be in the future.</value>
+  </data>
+  <data name="UserDateOfBirthIsTooOld" xml:space="preserve">
+    <value>The {PropertyName} is too old.</value>
+  </data>
+  <data name="UserEmailCannotBeEmpty" xml:space="preserve">
+    <value>{PropertyName} cannot be empty.</value>
+  </data>
+  <data name="UserEmailCannotExceed320Characters" xml:space="preserve">
+    <value>{PropertyName} cannot exceed 320 characters.</value>
+  </data>
+  <data name="UserEmailInvalidFormat" xml:space="preserve">
+    <value>Invalid {PropertyName} format.</value>
+  </data>
+  <data name="UserEmailShouldBeUnique" xml:space="preserve">
+    <value>This {PropertyName} is already in use.</value>
+  </data>
+  <data name="UserFirstNameCannotBeEmpty" xml:space="preserve">
+    <value>{PropertyName} cannot be empty.</value>
+  </data>
+  <data name="UserFirstNameCannotExceed50Characters" xml:space="preserve">
+    <value>The {PropertyName} cannot exceed 50 characters.</value>
+  </data>
+  <data name="UserLastNameCannotBeEmpty" xml:space="preserve">
+    <value>{PropertyName} cannot be empty.</value>
+  </data>
+  <data name="UserLastNameCannotExceed50Characters" xml:space="preserve">
+    <value>The {PropertyName} cannot exceed 50 characters.</value>
+  </data>
+  <data name="UserLoginCanContainOnlyLettersNumberAndUnderscore" xml:space="preserve">
+    <value>The {PropertyName} can contain only letters, numbers and an underscore</value>
+  </data>
+  <data name="UserLoginCannotExceed50Characters" xml:space="preserve">
+    <value>The {PropertyName} cannot exceed 50 characters</value>
+  </data>
+  <data name="UserLoginCheckIsNotEmpty" xml:space="preserve">
+    <value>The {PropertyName} cannot be empty.</value>
+  </data>
+  <data name="UserLoginMustContainAtLeast4Characters" xml:space="preserve">
+    <value>The {PropertyName} must contain at least 4 characters.</value>
+  </data>
+  <data name="UserLoginShouldBeUnique" xml:space="preserve">
+    <value>This {PropertyName} is already in use.</value>
+  </data>
+  <data name="UserPasswordCannotBeEmpty" xml:space="preserve">
+    <value>The {PropertyName} cannot be empty.</value>
+  </data>
+  <data name="UserPasswordCannotExceed50Characters" xml:space="preserve">
+    <value>The {PropertyName} cannot exceed 50 characters</value>
+  </data>
+  <data name="UserPasswordMustContainAtLeast8Characters" xml:space="preserve">
+    <value>The {PropertName} must contain at least 8 characters.</value>
+  </data>
+  <data name="UserPasswordMustContainAtLeastOneDigit" xml:space="preserve">
+    <value>The {PropertyName} must contain at least one digit.</value>
+  </data>
+  <data name="UserPasswordMustContainAtLeastOneLowercaseLetter" xml:space="preserve">
+    <value>The {PropertyName} must contain at least one lowercase letter.</value>
+  </data>
+  <data name="UserPasswordMustContainAtLeastOneSpecialCharacter" xml:space="preserve">
+    <value>The {PropertyName} must contain at least one special character.</value>
+  </data>
+  <data name="UserPasswordMustContainAtLeastOneUppercaseLetter" xml:space="preserve">
+    <value>The {PropertyName} must contain at least one uppercase letter.</value>
   </data>
 </root>

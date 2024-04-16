@@ -1,4 +1,4 @@
-﻿namespace Enums.AlbomTypes;
+﻿namespace Enums.AlbumTypes;
 
 public enum AlbumTypes
 {

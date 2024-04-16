@@ -2,7 +2,7 @@
 
 namespace Utils
 {
-    public static class GenerateId
+    public static class IdGenerator
     {
         public static string Id()
         {

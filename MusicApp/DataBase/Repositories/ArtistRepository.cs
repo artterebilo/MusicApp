@@ -1,4 +1,5 @@
 ﻿using DataBase.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,13 +52,13 @@ public static class ArtistRepository
     {
         using (ApplicationContext db = new ApplicationContext())
         {
-            var updateArtist = db.Artists.FirstOrDefault(art => art.Id == artist.Id);
-                        
-                updateArtist.Name = artist.Name;
-                updateArtist.Description = artist.Description;
-                updateArtist.Genres = artist.Genres;
-
-                db.SaveChanges();
+            db.Artists
+                .Where(a => a.Id == artist.Id)
+                .ExecuteUpdate(a => a
+                    .SetProperty(a => a.Name, artist.Name)
+                    .SetProperty(a => a.Description, artist.Description)
+                    .SetProperty(a => a.Genres, artist.Genres));
+            db.SaveChanges();
         }
     }
 

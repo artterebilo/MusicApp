@@ -18,7 +18,7 @@ public static class AlbumService
         {
             Id = Album.Id,
             Name = Album.Name,
-            Release = Album.Release,
+            ReleaseDate = Album.ReleaseDate,
             Genres = Album.Genres.Split(',').ToList(),
             Type = Album.Type,
             ArtistId = Album.ArtistId
@@ -36,7 +36,7 @@ public static class AlbumService
         {
             Id = Album.Id,
             Name = Album.Name,
-            Release = Album.Release,
+            ReleaseDate = Album.ReleaseDate,
             Genres = String.Join(",", Album.Genres),
             Type = Album.Type,
             ArtistId = Album.ArtistId
@@ -47,7 +47,7 @@ public static class AlbumService
     {
         return AlbumRepository.GetAlbumsCount();
     }
-    public static List<AlbumContract> GetAlbumForPagination(DefaultPagination @params)
+    public static List<AlbumContract> GetAlbumForPagination(AlbumPagination @params)
     {
         return AlbumRepository
             .GetAlbumsForPagination(@params)
@@ -62,19 +62,19 @@ public static class AlbumService
             .ToList();
     }
 
-    public static AlbumContract CreateAlbum(string artistId, AlbumCreateContract artist)
+    public static AlbumContract CreateAlbum(string artistId, AlbumCreateAndUpdateContract artist)
     {
         var newAlbum = new AlbumModel()
         {
-            Id = GenerateId.Id(),
+            Id = IdGenerator.Id(),
             Name = artist.Name,
-            Release = artist.Release,
+            ReleaseDate = artist.ReleaseDate.Value,
             Genres = String.Join(",", artist.Genres),
             Type = artist.Type,
             ArtistId = artistId
         };
 
-        AlbumRepository.CreateAlbum(newAlbum);
+        AlbumRepository.CreateAlbum(newAlbum);        
 
         return MapToContract(newAlbum);
     }
@@ -84,12 +84,12 @@ public static class AlbumService
         return MapToContract(AlbumRepository.GetAlbumById(id));
     }
 
-    public static void UpdateAlbum(string id, AlbumUpdateContract updateAlbum)
+    public static void UpdateAlbum(string id, AlbumCreateAndUpdateContract updateAlbum)
     {
         var album = AlbumService.GetAlbumById(id);
 
         album.Name = updateAlbum.Name;
-        album.Release = updateAlbum.Release;
+        album.ReleaseDate = updateAlbum.ReleaseDate.Value;
         album.Genres = updateAlbum.Genres;
         album.Type = updateAlbum.Type;
 

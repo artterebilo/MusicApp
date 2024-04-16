@@ -16,16 +16,16 @@ public class AlbumController : ControllerBase
 
         if (artist == null)
         {
-            return NotFound("No artist has been found for this ID");
+            return NotFound(Resources.Validations.ArtistNotFoundByThisId);
         }
 
         return Ok(AlbumService.GetAllAlbumsByArtist(artistId));
     }
 
     [HttpPost]
-    public IActionResult CreateAlbum(string artistId, AlbumCreateContract album)
+    public IActionResult CreateAlbum(string artistId, AlbumCreateAndUpdateContract album)
     {
-        var validator = new AlbumCreateValidation();
+        var validator = new AlbumCreateAndUpdateValidation();
         var result = validator.Validate(album);
         if (!result.IsValid)
         {
@@ -49,7 +49,7 @@ public class AlbumController : ControllerBase
 
         if (artist is null)
         {
-            return NotFound("It was not possible to create an album of this artist, so the id was not found.");
+            return NotFound(Resources.Validations.NotPossibleToCreateAlbum);
         }
 
         var newAlbum = AlbumService.CreateAlbum(artistId, album);
@@ -64,16 +64,16 @@ public class AlbumController : ControllerBase
 
         if (album is null || album.ArtistId != artistId)
         {
-            return NotFound("ArtistId or AlbumId not found");
+            return NotFound(Resources.Validations.ArtistOrAlbumIsNotFound);
         }
 
         return Ok(album);
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateAlbum(string artistId, string id, AlbumUpdateContract updateAlbum)
+    public IActionResult UpdateAlbum(string artistId, string id, AlbumCreateAndUpdateContract updateAlbum)
     {
-        var validator = new AlbumUpdateValidation();
+        var validator = new AlbumCreateAndUpdateValidation();
         var result = validator.Validate(updateAlbum);
         if (!result.IsValid)
         {
@@ -98,7 +98,7 @@ public class AlbumController : ControllerBase
 
         if (artist is null || album is null)
         {
-            return NotFound("ArtistId or AlbumId not found");
+            return NotFound(Resources.Validations.ArtistOrAlbumIsNotFound);
         }
 
         AlbumService.UpdateAlbum(id, updateAlbum);
@@ -114,7 +114,7 @@ public class AlbumController : ControllerBase
 
         if (artist is null || album is null)
         {
-            return NotFound("ArtistId or AlbumId not found");
+            return NotFound(Resources.Validations.ArtistOrAlbumIsNotFound);
         }
 
         AlbumService.DeleteAlbum(id);

@@ -19,14 +19,14 @@ public class AlbumsController : ControllerBase
         return new AlbumPaginationContract
         {
             Name = albums.Name,
-            Release = albums.Release,
+            ReleaseDate = albums.ReleaseDate,
             ArtistName = ArtistService.GetArtistById(albums.ArtistId).Name,
             Genres = albums.Genres
         };
     }
 
     [HttpGet]
-    public ActionResult<AlbumsPaginationContract> GetAlbumsWithPagination([FromQuery] DefaultPagination inputParams)
+    public ActionResult<AlbumsPaginationContract> GetAlbumsWithPagination([FromQuery] AlbumPagination inputParams)
     {
         var validator = new AlbumsPaginationValidation();
         var result = validator.Validate(inputParams);

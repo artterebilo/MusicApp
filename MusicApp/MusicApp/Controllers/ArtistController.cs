@@ -1,4 +1,5 @@
 ﻿using DataBase.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
@@ -9,7 +10,7 @@ using System.Diagnostics.Contracts;
 using Utils;
 
 namespace MusicApp.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class ArtistController : ControllerBase
@@ -26,7 +27,7 @@ public class ArtistController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<ArtistsPaginationContract> GetAllArtistWithPagination([FromQuery] DefaultPagination inputParams)
+    public ActionResult<ArtistsPaginationContract> GetAllArtistWithPagination([FromQuery] AlbumPagination inputParams)
     {
         var validator = new AtristsPaginationValidation();
         var result = validator.Validate(inputParams);
@@ -63,9 +64,9 @@ public class ArtistController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CreateArtist(ArtistCreateContract artist)
+    public IActionResult CreateArtist(ArtistCreateAndUpdateContract artist)
     {
-        var validator = new ArtistCreateValidation();
+        var validator = new ArtistCreateAndUpdateValidation();
         var result = validator.Validate(artist);
         if (!result.IsValid)
         {
@@ -97,16 +98,16 @@ public class ArtistController : ControllerBase
 
         if (artist is null)
         {
-            return NotFound("No artist has been found for this ID");
+            return NotFound(Resources.Validations.ArtistNotFoundByThisId);
         }
 
         return Ok(artist);
     }
 
     [HttpPut("{id}")]
-    public IActionResult UpdateArtist(string id, ArtistUpdateContract updateArtist)
+    public IActionResult UpdateArtist(string id, ArtistCreateAndUpdateContract updateArtist)
     {
-        var validator = new ArtistUpdateValidation();
+        var validator = new ArtistCreateAndUpdateValidation();
         var result = validator.Validate(updateArtist);
         if (!result.IsValid)
         {
@@ -130,7 +131,7 @@ public class ArtistController : ControllerBase
 
         if (existingArtist is null)
         {
-            return NotFound("It was not possible to update because the Artist was not found by such id");
+            return NotFound(Resources.Validations.ArtistNotFoundByThisId);
         }
 
         ArtistService.UpdateArtist(id, updateArtist);
@@ -145,7 +146,7 @@ public class ArtistController : ControllerBase
 
         if (artist is null)
         {
-            return NotFound("It was not possible to delete the Artist, because he was not found by such an id");
+            return NotFound(Resources.Validations.ArtistNotFoundByThisId);
         }
 
         ArtistService.DeleteArtist(id);

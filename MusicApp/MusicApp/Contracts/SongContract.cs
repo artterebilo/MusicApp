@@ -15,15 +15,7 @@ public class SongContract
     public string AlbumId { get; set; }
 }
 
-public class SongCreateContract
-{
-    public string Name { get; set; }
-    public int Number { get; set; }
-    public int DurationInSeconds { get; set; }
-    public List<string> FeaturingArtistIds { get; set; }
-}
-
-public class SongUpdateContract
+public class SongCreateAndUpdateContract
 {
     public string Name { get; set; }
     public int Number { get; set; }
