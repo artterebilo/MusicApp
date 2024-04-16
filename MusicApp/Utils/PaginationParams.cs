@@ -20,7 +20,7 @@ namespace Utils
         }
     }
 
-    public class DefaultPagination : PaginationParams
+    public class AlbumPagination : PaginationParams
     {
         private string genre = "";
         public string Genre 
@@ -29,6 +29,11 @@ namespace Utils
             set => genre = value == null ? "" : value;
         }
         public string SortBy { get; set; }
+        public string OrderBy { get; set; }
+    }
+
+    public class LikePagination : PaginationParams
+    {
         public string OrderBy { get; set; }
     }
 }

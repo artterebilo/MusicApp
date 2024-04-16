@@ -20,7 +20,7 @@ public static class AlbumRepository
                 .Count();
         }
     }
-    public static List<AlbumModel> GetAlbumsForPagination(DefaultPagination @params)
+    public static List<AlbumModel> GetAlbumsForPagination(AlbumPagination @params)
     {
         using (ApplicationContext db = new ApplicationContext())
         {

@@ -26,7 +26,7 @@ public class AlbumsController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<AlbumsPaginationContract> GetAlbumsWithPagination([FromQuery] DefaultPagination inputParams)
+    public ActionResult<AlbumsPaginationContract> GetAlbumsWithPagination([FromQuery] AlbumPagination inputParams)
     {
         var validator = new AlbumsPaginationValidation();
         var result = validator.Validate(inputParams);

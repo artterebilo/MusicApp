@@ -16,7 +16,7 @@ public class SongModel
     public string Name { get; set; }
 
     [Required]
-    public int Number {  get; set; }
+    public int Number { get; set; }
 
     [Required]
     public int DurationInSeconds { get; set; }
@@ -27,7 +27,7 @@ public class SongModel
     [Required]
     public string AlbumId { get; set; }
 
-    public AlbumModel Album {  get; set; }
+    public AlbumModel Album { get; set; }
 }
 
 

@@ -47,7 +47,7 @@ public static class AlbumService
     {
         return AlbumRepository.GetAlbumsCount();
     }
-    public static List<AlbumContract> GetAlbumForPagination(DefaultPagination @params)
+    public static List<AlbumContract> GetAlbumForPagination(AlbumPagination @params)
     {
         return AlbumRepository
             .GetAlbumsForPagination(@params)

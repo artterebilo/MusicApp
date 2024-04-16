@@ -27,7 +27,7 @@ public class ArtistCreateAndUpdateValidation : AbstractValidator<ArtistCreateAnd
     }
 }
 
-public class AtristsPaginationValidation: AbstractValidator<DefaultPagination>
+public class AtristsPaginationValidation: AbstractValidator<AlbumPagination>
 {
     public AtristsPaginationValidation()
     {

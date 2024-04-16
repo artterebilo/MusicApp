@@ -263,7 +263,7 @@ public class AlbumTests
     [Test]
     public void AlbumPageNumber_MustBeLessThanOne()
     {
-        var albumPagination = new DefaultPagination
+        var albumPagination = new AlbumPagination
         {
             PageNumber = 0,
             PageSize = 1,
@@ -281,7 +281,7 @@ public class AlbumTests
     [Test]
     public void AlbumPageNumber_MustBeLessThanZero()
     {
-        var albumPagination = new DefaultPagination
+        var albumPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 1,
@@ -297,7 +297,7 @@ public class AlbumTests
     [Test]
     public void AlbumPageSize_MustBeLessThanOne()
     {
-        var albumPagination = new DefaultPagination
+        var albumPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 0,
@@ -315,7 +315,7 @@ public class AlbumTests
     [Test]
     public void AlbumPageSize_MustBeLessThanZero()
     {
-        var albumPagination = new DefaultPagination
+        var albumPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 1,
@@ -331,7 +331,7 @@ public class AlbumTests
     [Test]
     public void AlbumOrderBy_MustBeNotEqualDescOrAsc()
     {
-        var albumPagination = new DefaultPagination
+        var albumPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 1,
@@ -349,7 +349,7 @@ public class AlbumTests
     [Test]
     public void AlbumOrderBy_MustBeEqualDescOrAsc()
     {
-        var albumPagination = new DefaultPagination
+        var albumPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 1,
@@ -365,7 +365,7 @@ public class AlbumTests
     [Test]
     public void AlbumSortBy_MustBeEmpty()
     {
-        var albumPagination = new DefaultPagination
+        var albumPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 1,
@@ -383,7 +383,7 @@ public class AlbumTests
     [Test]
     public void AlbumSortBy_MustBeCorrect()
     {
-        var albumPagination = new DefaultPagination
+        var albumPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 1,
@@ -399,7 +399,7 @@ public class AlbumTests
     [Test]
     public void AlbumSortBy_MustBeNotEqualPropertyAlbum()
     {
-        var albumPagination = new DefaultPagination
+        var albumPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 1,
@@ -417,7 +417,7 @@ public class AlbumTests
     [Test]
     public void AlbumSortBy_MustBeEqualPropertyAlbum()
     {
-        var albumPagination = new DefaultPagination
+        var albumPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 1,

@@ -32,7 +32,7 @@ public class AlbumCreateAndUpdateValidation : AbstractValidator<AlbumCreateAndUp
     }
 }
 
-public class AlbumsPaginationValidation : AbstractValidator<DefaultPagination>
+public class AlbumsPaginationValidation : AbstractValidator<AlbumPagination>
 {
     public AlbumsPaginationValidation()
     {

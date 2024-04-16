@@ -216,7 +216,7 @@ public class ArtistTests
     [Test]
     public void ArtistPageNumber_MustLessThanOne()
     {
-        var artistPagination = new DefaultPagination
+        var artistPagination = new AlbumPagination
         {
             PageNumber = 0,
             PageSize = 1
@@ -231,7 +231,7 @@ public class ArtistTests
     [Test]
     public void ArtistPageNumber_MustMoreThanZero()
     {
-        var artistPagination = new DefaultPagination
+        var artistPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 1
@@ -245,7 +245,7 @@ public class ArtistTests
     [Test]
     public void ArtistPageSize_MustLessThanOne()
     {
-        var artistPagination = new DefaultPagination
+        var artistPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 0
@@ -260,7 +260,7 @@ public class ArtistTests
     [Test]
     public void ArtistPageSize_MustMoreThanZero()
     {
-        var artistPagination = new DefaultPagination
+        var artistPagination = new AlbumPagination
         {
             PageNumber = 1,
             PageSize = 1

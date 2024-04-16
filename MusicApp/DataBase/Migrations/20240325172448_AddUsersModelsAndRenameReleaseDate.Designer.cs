@@ -4,6 +4,7 @@ using DataBase.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataBase.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20240325172448_AddUsersModelsAndRenameReleaseDate")]
+    partial class AddUsersModelsAndRenameReleaseDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,27 +107,6 @@ namespace DataBase.Migrations
                     b.ToTable("Songs");
                 });
 
-            modelBuilder.Entity("DataBase.Models.UserLikeSongsModel", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("SongId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("LikeStatus")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("LikedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("UserId", "SongId");
-
-                    b.HasIndex("SongId");
-
-                    b.ToTable("UsersLikesSongs");
-                });
-
             modelBuilder.Entity("DataBase.Models.UserModel", b =>
                 {
                     b.Property<string>("Id")
@@ -158,9 +140,6 @@ namespace DataBase.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Users");
@@ -186,25 +165,6 @@ namespace DataBase.Migrations
                         .IsRequired();
 
                     b.Navigation("Album");
-                });
-
-            modelBuilder.Entity("DataBase.Models.UserLikeSongsModel", b =>
-                {
-                    b.HasOne("DataBase.Models.SongModel", "Song")
-                        .WithMany()
-                        .HasForeignKey("SongId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataBase.Models.UserModel", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Song");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DataBase.Models.AlbumModel", b =>
