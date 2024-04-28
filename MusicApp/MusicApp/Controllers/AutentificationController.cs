@@ -20,6 +20,7 @@ public class AutentificationController : ControllerBase
         var jwtService = new JwtService(Constants.Issuer, Constants.Audience, Constants.SecretKey);
 
         var token = jwtService.GenerateToken(userId, user.Role.ToString());
+        Console.WriteLine(user.Role);
         return Ok(token);
     }
 }

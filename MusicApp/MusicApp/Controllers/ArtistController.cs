@@ -10,6 +10,7 @@ using System.Diagnostics.Contracts;
 using Utils;
 
 namespace MusicApp.Controllers;
+
 [Authorize]
 [ApiController]
 [Route("[controller]")]

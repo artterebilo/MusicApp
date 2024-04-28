@@ -35,5 +35,6 @@ namespace Utils
     public class LikePagination : PaginationParams
     {
         public string OrderBy { get; set; }
+        public string SortBy { get; set; }
     }
 }

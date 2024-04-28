@@ -10,6 +10,7 @@ using MusicApp.Validations;
 using System.Globalization;
 using System.Text;
 using System.Text.Json.Serialization;
+using Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +29,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddTransient<IValidator<UserCreateContract>, UserCreateValidation>();
 builder.Services.AddTransient<IValidator<UserUpdateContract>, UserUpdateValidation>();
-
+builder.Services.AddTransient<IValidator<UserLikeSongContract>, UserLikeValidation>();
+builder.Services.AddTransient<IValidator<LikePagination>, LikePaginationValidation>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         .AddJwtBearer(options =>
@@ -84,19 +86,6 @@ app.UseRequestLocalization(new RequestLocalizationOptions
     SupportedCultures = supportedCultures,
     SupportedUICultures = supportedCultures
 });
-
-var floatSum = 0.4f * 0.2f;
-
-var doubleSum = 0.4d * 0.2d;
-
-var decimalSum = (decimal)0.4 * (decimal)0.2;
-
-
-var floatSum1 = 0.4f * 0.2f;
-
-var doubleSum1 = 0.4d * 0.2d;
-
-var decimalSum1 = (decimal)0.42375482375829375923 * (decimal)0.283952895289582985928;
 
 
 app.Run();

@@ -1,21 +1,27 @@
-﻿using MusicApp.Contracts;
+﻿using FluentValidation;
+using MusicApp.Contracts;
 using MusicApp.Validations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace MusicApp.Unit.Tests;
 
 public class UserTests
 {
     private UserCreateValidation validation;
+    private UserLikeValidation likeValidation;
+    private LikePaginationValidation likePaginationValidation;
 
     [SetUp]
     public void Setup()
     {
         validation = new UserCreateValidation();
+        likeValidation = new UserLikeValidation();
+        likePaginationValidation = new LikePaginationValidation();
     }
 
     [Test]
@@ -850,6 +856,169 @@ public class UserTests
         };
 
         var result = validation.Validate(user);
+
+        Assert.IsFalse(!result.IsValid);
+    }
+
+    [Test]
+    public void invalidSongId()
+    {
+        var user = new UserLikeSongContract
+        {
+            UserId = "UboTphqtQ0y",
+            SongId = "CxWpsSn75a",
+            LikeStatus = Enums.UserLikeSongsTypes.Like
+        };
+
+        var result = likeValidation.Validate(user);
+
+        Assert.IsFalse(result.IsValid);
+        Assert.IsTrue(result.Errors.Count() == 1);
+    }
+
+    [Test]
+    public void validSongId()
+    {
+        var user = new UserLikeSongContract
+        {
+            UserId = "UboTphqtQ0y",
+            SongId = "CxWpsSn75aP",
+            LikeStatus = Enums.UserLikeSongsTypes.Like
+        };
+
+        var result = likeValidation.Validate(user);
+
+        Assert.IsFalse(!result.IsValid);
+    }
+
+    [Test]
+    public void LikePagination_InCorrectPageSize()
+    {
+        var likePagination = new LikePagination
+        {
+            PageSize = 0,
+            PageNumber = 1,
+            OrderBy = "desc",
+            SortBy = "LikedAt"
+        };
+
+        var result = likePaginationValidation.Validate(likePagination);
+
+        Assert.IsFalse(result.IsValid);
+        Assert.IsTrue(result.Errors.Count() == 1);
+    }
+
+    [Test]
+    public void LikePagination_CorrectPageSize()
+    {
+        var likePagination = new LikePagination
+        {
+            PageSize = 1,
+            PageNumber = 1,
+            OrderBy = "desc",
+            SortBy = "LikedAt"
+        };
+
+        var result = likePaginationValidation.Validate(likePagination);
+
+        Assert.IsFalse(!result.IsValid);
+    }
+
+    [Test]
+    public void LikePagination_InCorrectPageNumber()
+    {
+        var likePagination = new LikePagination
+        {
+            PageSize = 1,
+            PageNumber = 0,
+            OrderBy = "desc",
+            SortBy = "LikedAt"
+        };
+
+        var result = likePaginationValidation.Validate(likePagination);
+
+        Assert.IsFalse(result.IsValid);
+        Assert.IsTrue(result.Errors.Count() == 1);
+    }
+
+    [Test]
+    public void LikePagination_CorrectPageNumber()
+    {
+        var likePagination = new LikePagination
+        {
+            PageSize = 1,
+            PageNumber = 1,
+            OrderBy = "desc",
+            SortBy = "LikedAt"
+        };
+
+        var result = likePaginationValidation.Validate(likePagination);
+
+        Assert.IsFalse(!result.IsValid);
+    }
+
+    [Test]
+    public void LikePagination_InCorrectOrderBy()
+    {
+        var likePagination = new LikePagination
+        {
+            PageSize = 1,
+            PageNumber = 25,
+            OrderBy = "",
+            SortBy = "LikedAt"
+        };
+
+        var result = likePaginationValidation.Validate(likePagination);
+
+        Assert.IsFalse(result.IsValid);
+        Assert.IsTrue(result.Errors.Count() == 1);
+    }
+
+    [Test]
+    public void LikePagination_CorrectOrderBy()
+    {
+        var likePagination = new LikePagination
+        {
+            PageSize = 1,
+            PageNumber = 25,
+            OrderBy = "asc",
+            SortBy = "LikedAt"
+        };
+
+        var result = likePaginationValidation.Validate(likePagination);
+
+        Assert.IsFalse(!result.IsValid);
+    }
+
+    [Test]
+    public void LikePagination_InCorrectSortBy()
+    {
+        var likePagination = new LikePagination
+        {
+            PageSize = 1,
+            PageNumber = 25,
+            OrderBy = "asc",
+            SortBy = ""
+        };
+
+        var result = likePaginationValidation.Validate(likePagination);
+
+        Assert.IsFalse(result.IsValid);
+        Assert.IsTrue(result.Errors.Count() == 1);
+    }
+
+    [Test]
+    public void LikePagination_CorrectSortBy()
+    {
+        var likePagination = new LikePagination
+        {
+            PageSize = 1,
+            PageNumber = 25,
+            OrderBy = "asc",
+            SortBy = "LikedAt"
+        };
+
+        var result = likePaginationValidation.Validate(likePagination);
 
         Assert.IsFalse(!result.IsValid);
     }

@@ -9,7 +9,7 @@ public class UserLikeSongContract
     public UserLikeSongsTypes LikeStatus { get; set; }
 }
 
-public class AllSongsLikedUserContract
+public class AllLikeSongsUserContract
 {
     public string UserId { get; set; }
     public int PageNumber { get; set; }
@@ -17,6 +17,7 @@ public class AllSongsLikedUserContract
     public int PageSize { get; set; }
     public List<ArtistAlbumSingInformationContract> Items { get; set; }
 }
+
 public class ArtistAlbumSingInformationContract
 {
     public string SondId { get; set; }

@@ -39,6 +39,13 @@ public class UserCreateValidation : UserCommonValidation<UserCreateContract>
 {
     public UserCreateValidation()
     {
+        RuleFor(user => user.Email)
+            .Cascade(CascadeMode.Stop)
+            .NotEmpty().WithMessage(Resources.Validations.UserEmailCannotBeEmpty)
+            .EmailAddress().WithMessage(Resources.Validations.UserEmailInvalidFormat)
+            .MaximumLength(320).WithMessage(Resources.Validations.UserEmailCannotExceed320Characters)
+            .Must(UserService.IsUniqueEmail).WithMessage(Resources.Validations.UserEmailShouldBeUnique);
+
         RuleFor(user => user.Login)
                     .Cascade(CascadeMode.Stop)
                     .NotEmpty().WithMessage(Resources.Validations.UserLoginCheckIsNotEmpty)

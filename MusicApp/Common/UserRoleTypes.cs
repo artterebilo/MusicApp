@@ -8,7 +8,8 @@ namespace Enums.UserRole;
 
 public enum UserRole
 {
-    User = 0,
-    Artist = 1,
-    Admin = 2
+    NotDefined = 0,
+    User = 1,
+    Artist = 2,
+    Admin = 3
 }

@@ -6,9 +6,11 @@ using System;
 using System.Numerics;
 using DataBase.Models;
 using MusicApp.Validations;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MusicApp.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 

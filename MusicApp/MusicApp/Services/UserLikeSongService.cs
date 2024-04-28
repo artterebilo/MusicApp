@@ -43,7 +43,7 @@ public class UserLikeSongService
         UserLikeSongRepository.UpdateUserLikeStatus(mapUser);
     }
 
-    public static AllSongsLikedUserContract GetAllSongsLikedUser(LikePagination inputParams, string id)
+    public static AllLikeSongsUserContract GetAllSongsLikedUser(LikePagination inputParams, string id)
     {
         var songs = UserLikeSongRepository.GetAllSongsLikedUser(inputParams, id);
 
@@ -67,7 +67,7 @@ public class UserLikeSongService
             items.Add(item);
         }
 
-        var getSongs = new AllSongsLikedUserContract
+        var getSongs = new AllLikeSongsUserContract
         {
             UserId = id,
             PageNumber = inputParams.PageNumber,
@@ -77,6 +77,29 @@ public class UserLikeSongService
         };
 
         return getSongs;
+    }
+
+    public static bool checkIfThereIsUser(string id)
+    {
+        var user = UserService.GetUserById(id);
+
+        if (user is null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    public static bool checkIfThereIsSong(string id)
+    {
+        var user = SongService.GetSongById(id);
+
+        if (user is null)
+        {
+            return false;
+        }
+
+        return true;
     }
 }
 

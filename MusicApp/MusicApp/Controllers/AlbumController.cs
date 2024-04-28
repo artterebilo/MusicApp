@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MusicApp.Contracts;
 using MusicApp.Services;
 using MusicApp.Validations;
 
 namespace MusicApp.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("artist/{artistId}/[controller]")]
 public class AlbumController : ControllerBase

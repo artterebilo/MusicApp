@@ -1,12 +1,16 @@
-﻿using FluentValidation;
+﻿using Enums.UserRole;
+using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using MusicApp.Contracts;
 using MusicApp.Services;
 using MusicApp.Validations;
+using System.Security.Claims;
 
 namespace MusicApp.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class UsersController : ControllerBase
@@ -53,85 +57,127 @@ public class UsersController : ControllerBase
         return Created("users", newUser);
     }
 
+    
     [HttpGet("{id}")]
     public ActionResult<UserContract> GetUserById(string id)
     {
-        var user = UserService.GetUserById(id);
+        var requestContextUser = User;
+        var contextUserClaimId = requestContextUser.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier);
+        var contextUserId = contextUserClaimId.Value;
+        var contextUserClaimRole = requestContextUser.Claims.First(claim => claim.Type == ClaimTypes.Role);
+        var contextUserRole = contextUserClaimRole.Value;
 
-        if (user is null)
+        if (contextUserRole == UserRole.Admin.ToString()
+            || contextUserRole == UserRole.User.ToString()
+            || contextUserRole == UserRole.Artist.ToString()
+            && id == contextUserId)
         {
-            return NotFound("User Not Found");
+            var user = UserService.GetUserById(id);
+            if (user is null)
+            {
+                return NotFound("User Not Found");
+            }
+
+            return Ok(user);
         }
 
-        return Ok(user);
+        return Unauthorized();
     }
 
     [HttpPut("{id}")]
     public IActionResult UpdateUser(string id, UserUpdateContract user)
     {
-        var result = updateValidator.Validate(user);
-        if (!result.IsValid)
+        var requestContextUser = User;
+        var contextUserClaimId = requestContextUser.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier);
+        var contextUserId = contextUserClaimId.Value;
+        var contextUserClaimRole = requestContextUser.Claims.First(claim => claim.Type == ClaimTypes.Role);
+        var contextUserRole = contextUserClaimRole.Value;
+
+        if (contextUserRole == UserRole.Admin.ToString()
+            || contextUserRole == UserRole.User.ToString()
+            || contextUserRole == UserRole.Artist.ToString()
+            && id == contextUserId)
         {
-            var messages = result.Errors.Select((e) =>
+            var result = updateValidator.Validate(user);
+            if (!result.IsValid)
             {
-                return new Error
+                var messages = result.Errors.Select((e) =>
                 {
-                    Message = e.ErrorMessage,
-                    Field = e.PropertyName
+                    return new Error
+                    {
+                        Message = e.ErrorMessage,
+                        Field = e.PropertyName
+                    };
+                });
+
+                var errors = new Errors
+                {
+                    ErrorsMessages = messages.ToList(),
                 };
-            });
+                return BadRequest(errors);
+            }
 
-            var errors = new Errors
+            var existingUser = UserService.GetUserById(id);
+
+            if (existingUser is null)
             {
-                ErrorsMessages = messages.ToList(),
-            };
-            return BadRequest(errors);
+                return NotFound();
+            }
+
+            UserService.UpdateUser(id, user);
+
+            return NoContent();
         }
 
-        var existingUser = UserService.GetUserById(id);
-
-        if (existingUser is null)
-        {
-            return NotFound();
-        }
-
-        UserService.UpdateUser(id, user);
-
-        return NoContent();
+        return Unauthorized();
     }
 
     [HttpPut("{id}/updateEmail")]
     public IActionResult UpdateUserEmail(string id, UserUpdateEmailContract email)
     {
-        var emailValidator = new UserUpdateEmailValidation();
-        var result = emailValidator.Validate(email);
-        if (!result.IsValid)
+        var requestContextUser = User;
+        var contextUserClaimId = requestContextUser.Claims.First(claim => claim.Type == ClaimTypes.NameIdentifier);
+        var contextUserId = contextUserClaimId.Value;
+        var contextUserClaimRole = requestContextUser.Claims.First(claim => claim.Type == ClaimTypes.Role);
+        var contextUserRole = contextUserClaimRole.Value;
+
+        if (contextUserRole == UserRole.Admin.ToString()
+            || contextUserRole == UserRole.User.ToString()
+            || contextUserRole == UserRole.Artist.ToString()
+            && id == contextUserId)
         {
-            var messages = result.Errors.Select((e) =>
+            var emailValidator = new UserUpdateEmailValidation();
+            var result = emailValidator.Validate(email);
+            if (!result.IsValid)
             {
-                return new Error
+                var messages = result.Errors.Select((e) =>
                 {
-                    Message = e.ErrorMessage,
-                    Field = e.PropertyName
+                    return new Error
+                    {
+                        Message = e.ErrorMessage,
+                        Field = e.PropertyName
+                    };
+                });
+
+                var errors = new Errors
+                {
+                    ErrorsMessages = messages.ToList(),
                 };
-            });
+                return BadRequest(errors);
+            }
+            var existingUser = UserService.GetUserById(id);
 
-            var errors = new Errors
+            if (existingUser is null)
             {
-                ErrorsMessages = messages.ToList(),
-            };
-            return BadRequest(errors);
-        }
-        var existingUser = UserService.GetUserById(id);
+                return NotFound();
+            }
 
-        if (existingUser is null)
-        {
-            return NotFound();
+            UserService.UpdateUserEmail(id, email);
+
+            return NoContent();
         }
 
-        UserService.UpdateUserEmail(id, email);
-
-        return NoContent();
+        return Unauthorized();
     }
 
     [HttpDelete("{id}")]

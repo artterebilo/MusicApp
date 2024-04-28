@@ -1,5 +1,6 @@
 ﻿using DataBase.Models;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MusicApp.Contracts;
 using MusicApp.Services;
@@ -7,6 +8,7 @@ using MusicApp.Validations;
 
 namespace MusicApp.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("artist/{artistId}/albums/{albumId}/[controller]")]
 public class SongsController : ControllerBase

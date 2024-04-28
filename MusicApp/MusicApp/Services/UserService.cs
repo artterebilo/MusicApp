@@ -115,6 +115,7 @@ public class UserService
             FirstName = user.FirstName,
             LastName = user.LastName,
             DateOfBirth = user.DateOfBirth,
+            Role = user.Role
         };
     }
 }
